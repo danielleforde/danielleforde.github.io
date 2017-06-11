@@ -74,12 +74,12 @@ function generatePage(obj) {
     document.body.innerHTML = ''
     titleImage = document.createElement('img')
     titleImage.src = obj.image
-    titleImage.height = 500
+    titleImage.height = 400
     document.body.appendChild(titleImage)
     const playButtonOuter = document.createElement('div')
     const playButton = document.createElement('img')
     playButton.src = obj.buttonImage
-    playButton.height = 100
+    playButton.height = 90
     playButton.onmouseover = lighten(playButton)
     playButton.onmouseout = backToNormal(playButton)
     playButton.onclick = () => {
@@ -92,8 +92,9 @@ function generatePage(obj) {
     document.body.innerHTML = ''
     titleImage = document.createElement('img')
     titleImage.src = obj.headerImage
-    titleImage.height = 500
+    titleImage.height = 300
     document.body.appendChild(titleImage)
+    const outerChoices = document.createElement('div')
     const firstChoice = document.createElement('img')
     const secondChoice = document.createElement('img')
     firstChoice.src = obj.good
@@ -113,8 +114,9 @@ function generatePage(obj) {
       score++
       generatePage(pages[pageNumber])
     }
-    document.body.appendChild(firstChoice)
-    document.body.appendChild(secondChoice)
+    document.body.appendChild(outerChoices)
+    outerChoices.appendChild(firstChoice)
+    outerChoices.appendChild(secondChoice)
   } else if (obj.type === 'donezo') {
     document.body.innerHTML = ''
     let scoreResolved
@@ -129,9 +131,9 @@ function generatePage(obj) {
     const resolvedText = document.createElement('img')
     const resolvedImage = document.createElement('img')
     resolvedText.src = obj.info[scoreResolved].text
-    resolvedText.height = 100
+    resolvedText.height = 150
     resolvedImage.src = obj.info[scoreResolved].image
-    resolvedImage.height = 500
+    resolvedImage.height = 400
     document.body.appendChild(resolvedTextOuter)
     resolvedTextOuter.appendChild(resolvedText)
     document.body.appendChild(resolvedImage)

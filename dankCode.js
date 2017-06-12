@@ -52,7 +52,24 @@ const pages = [
         text: './fullyFuckedText.jpg',
         image: './fullyFucked.jpg'
       }
-    }
+    },
+    button: './nextHand.jpg'
+  },
+  {
+    type: 'postdonezo',
+    info: {
+      half: {
+        image: './halfFuckedResult.jpg'
+      },
+      full: {
+        image: './fullyFuckedResult.jpg'
+      }
+    },
+    button: './toLastPage.jpg'
+  },
+  {
+    type: 'final',
+    image: 'final.jpg'
   }
 ]
 
@@ -134,23 +151,70 @@ function generatePage(obj) {
   } else if (obj.type === 'donezo') {
     appDiv.innerHTML = ''
     let scoreResolved
+    let nextFunction
     if (score < 1) {
       scoreResolved = 'none'
+      nextFunction = () => {
+        pageNumber = pageNumber + 2
+        generatePage(pages[pageNumber])
+      }
     } else if (score >= 1 && score <= 4) {
       scoreResolved = 'half'
+      nextFunction = () => {
+        pageNumber++
+        generatePage(pages[pageNumber])
+      }
     } else if (score > 4) {
       scoreResolved = 'full'
+      nextFunction = () => {
+        pageNumber++
+        generatePage(pages[pageNumber])
+      }
     }
     const resolvedTextOuter = document.createElement('div')
     const resolvedText = document.createElement('img')
     const resolvedImage = document.createElement('img')
+    const nextButton = document.createElement('img')
     resolvedText.src = obj.info[scoreResolved].text
     resolvedText.height = 150
     resolvedImage.src = obj.info[scoreResolved].image
     resolvedImage.height = 400
+    nextButton.src = obj.button
+    nextButton.height = 120
+    nextButton.className = 'lighten'
+    nextButton.onclick = nextFunction
     appDiv.appendChild(resolvedTextOuter)
     resolvedTextOuter.appendChild(resolvedText)
     appDiv.appendChild(resolvedImage)
+    appDiv.appendChild(nextButton)
+  } else if (obj.type === 'postdonezo') {
+    appDiv.innerHTML = ''
+    const result = document.createElement('img')
+    const goToFinal = document.createElement('img')
+    let scoreResolved
+    if (score >= 1 && score <= 4) {
+      scoreResolved = 'half'
+    } else if (score > 4) {
+      scoreResolved = 'full'
+    }
+    result.src = obj.info[scoreResolved].image
+    result.height = 400
+    goToFinal.src = obj.button
+    goToFinal.height = 110
+    goToFinal.className = 'lighten'
+    goToFinal.onclick = () => {
+      pageNumber++
+      generatePage(pages[pageNumber])
+    }
+    appDiv.appendChild(result)
+    appDiv.appendChild(goToFinal)
+  } else if (obj.type === 'final') {
+    app.innerHTML = ''
+    const final = document.createElement('img')
+    final.src = obj.image
+    final.height = 600
+    appDiv.appendChild(final)
+
   }
 }
 

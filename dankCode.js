@@ -80,11 +80,9 @@ function generatePage(obj) {
     playButton.onmousedown = e => {
       if (e.which === 2) {
         const rands = [
-          '4N3N1MlvVc4?',
-          'aUea0h4DZTs?',
-          'IXdNnw99-Ic?'
+          '4N3N1MlvVc4?'
         ]
-        const cd = rands[Math.floor((Math.random() * 3))]
+        const cd = rands[0]
         const egg = document.createElement('iframe')
         egg.width = 420
         egg.height = 315

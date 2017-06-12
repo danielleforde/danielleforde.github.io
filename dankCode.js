@@ -88,7 +88,7 @@ function generatePage(obj) {
     playButton.height = 90
 
     playButton.className = 'lighten'
-    playButton.onclick = (e) => {
+    playButton.onclick = () => {
       pageNumber++
       generatePage(pages[pageNumber])
     }
@@ -211,10 +211,15 @@ function generatePage(obj) {
   } else if (obj.type === 'final') {
     app.innerHTML = ''
     const final = document.createElement('img')
+    const outerLink = document.createElement('div')
+    const link = document.createElement('a')
     final.src = obj.image
     final.height = 600
+    link.setAttribute('href', 'https://ourworldindata.org/')
+    link.innerHTML = 'Click here for a source! I\'m not making this shit up, I promise!'
     appDiv.appendChild(final)
-
+    appDiv.appendChild(outerLink)
+    outerLink.appendChild(link)
   }
 }
 

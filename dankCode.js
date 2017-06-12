@@ -57,16 +57,14 @@ const pages = [
 ]
 
 const appDiv = document.getElementById('app')
-appDiv.style.textAlign = 'center'
 
 function generatePage(obj) {
-  let titleImage
   if (obj.type === 'title') {
     appDiv.innerHTML = ''
-    titleImage = document.createElement('img')
-    titleImage.src = obj.image
-    titleImage.height = 400
-    appDiv.appendChild(titleImage)
+    const firstTitleImage = document.createElement('img')
+    firstTitleImage.src = obj.image
+    firstTitleImage.height = 400
+    appDiv.appendChild(firstTitleImage)
     const playButtonOuter = document.createElement('div')
     const playButton = document.createElement('img')
     playButton.src = obj.buttonImage
@@ -106,7 +104,7 @@ function generatePage(obj) {
     playButtonOuter.appendChild(playButton)
   } else if (obj.type === 'quizer') {
     appDiv.innerHTML = ''
-    titleImage = document.createElement('img')
+    const titleImage = document.createElement('img')
     titleImage.src = obj.headerImage
     titleImage.height = 300
     appDiv.appendChild(titleImage)
@@ -157,6 +155,3 @@ function generatePage(obj) {
 }
 
 generatePage(pages[pageNumber])
-
-function dank() {
-}
